@@ -1,3 +1,4 @@
+from operator import truediv
 from app import app
 from app import models as db
 
@@ -110,11 +111,14 @@ def actualizar_rest(id):
         descripcion = request.form.get('descripcion')
         vegetariana = request.form.get('vegetariana')
         vegana = request.form.get('vegana')
-
-
-    
-        restaurante = db.domo_restaurante.query.filter_by(rtr_id=id).first()
+        visible = request.form.get('visible')
         
+        restaurante = db.domo_restaurante.query.filter_by(rtr_id=id).first()
+        if (visible == 1):
+            restaurante.rtr_visible=True
+        else:
+            restaurante.rtr_visible=False
+            
         direccion = db.domo_direccion.query.filter_by(dir_id=restaurante.dir_id).first()
 
         if(direccion.dir_numerocalle != numero and direccion.dir_nombrecalle != calle and direccion.ciu_id != ciudad):
