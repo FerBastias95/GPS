@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Rock+Salt');
 @import "styles/reservas.css";
 @import "styles/tablarestaurantes.css";
+@import "styles/perfil.css";
 
 :root {
     --dark: #601b90;
@@ -97,6 +98,7 @@ body {
 }
 
 
+
 .content{
     padding-top: 2rem; 
 }
@@ -120,9 +122,6 @@ body {
     background-color: rgb(0, 234, 234);
 }
 
-.dropdown{
-    margin-left: 80rem;
-}
 
 .login .card{
     margin-top: 2%;
@@ -160,8 +159,8 @@ body {
 }
 
 .draggable{
-    left: 12px;
-    top: 338px;
+    left: 350px;
+    top: 448px;
     position: absolute;
     cursor: move;
 }
@@ -185,7 +184,7 @@ body {
 
 #grid{
     margin-top: 40px;
-    width: 40.55em;
+    width: 40.57em;
     height: 40.56em;
     background-color: #603e86;
     background-image:
@@ -201,3 +200,14 @@ body {
 .flex{
     display: flex;
 }
+
+
+.card-overlay {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+#formulario-registro .error{
+    color: rgb(250, 75, 75);
+    display:block;
+}
+

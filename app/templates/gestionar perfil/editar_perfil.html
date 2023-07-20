@@ -7,9 +7,9 @@ Perfil de Usuario
 {% block body %}
 <section class="registro-fondo login">
     <div class="container-fluid">
-        <div class="row" style="justify-content: center;">
+        <div class="row" style="justify-content: center; padding-bottom: 2%;">
             <div class="card">
-                <div class="container-fluid" style="margin-top: 2%;">
+                <div class="container-fluid" style="margin-top: 2%; margin-bottom: 2%;">
                     <div class="row">
                         <div class="col-md-2" style="text-align: center;">
                             <div class="row">
@@ -21,11 +21,11 @@ Perfil de Usuario
                             </div>
 
                         </div>
-                        <div class="col-md-8" style="margin-top: 4%;">
+                        <div class="col-md-8">
                             <div class="row">
-                                <h3>
-                                    {{cliente.domo_cliente.cli_nombre}} {{cliente.domo_cliente.cli_apellido}}
-                                </h3>
+                                <h4>
+                                    {{cliente.cli_nombre}} {{cliente.cli_apellido}}
+                                </h4>
                             </div>
                             <div class="row" style="margin-top: 4%;">
                                 <ul class="nav nav-tabs">
@@ -47,16 +47,16 @@ Perfil de Usuario
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>Nombre</td>
-                                                <td>{{cliente.domo_cliente.cli_nombre}}</td>
+                                                <td>Nombre:</td>
+                                                <td>{{cliente.cli_nombre}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Apellido</td>
-                                                <td>{{cliente.domo_cliente.cli_apellido}}</td>
+                                                <td>Apellido:</td>
+                                                <td>{{cliente.cli_apellido}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Correo</td>
-                                                <td>{{cliente.domo_usuario.usr_login}}</td>
+                                                <td>Correo:</td>
+                                                <td>{{usuario.usr_login}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -64,7 +64,7 @@ Perfil de Usuario
                                 <div class="col-md-6" style="margin-top: 2%;">
                                     <h5>Informacion Personal</h5>
                                 </div>
-                                <table class="table" style="color:white">
+                                <table class="table table-hover" style="color:white">
                                     <thead>
                                         <tr>
                                             <th scope="col"></th>
@@ -74,25 +74,25 @@ Perfil de Usuario
                                     <tbody>
                                         <tr>
                                             <td>Telefono:</td>
-                                            <td>{{cliente.domo_cliente.cli_telefono}}</td>
+                                            <td>{{cliente.cli_telefono}}</td>
                                         </tr>
                                         <tr>
                                             <td>Direccion:</td>
-                                            <td>{{cliente.domo_direccion.dir_nombrecalle}} {{cliente.domo_direccion.dir_numerocalle}} 
-                                                {{cliente.domo_ciudad.ciu_nombre}}</td>
+                                            <td>{{direccion.dir_nombrecalle}} {{direccion.dir_numerocalle}} 
+                                                {{ciudad.ciu_nombre}}</td>
                                         </tr>
                                         <tr>
-                                            <td>Rut</td>
-                                            <td>{{cliente.domo_cliente.cli_rut}}</td>
+                                            <td>Rut:</td>
+                                            <td>{{cliente.cli_rut}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
                                 <div>
                                     <a class="btn btn-primary"
-                                        href="{{url_for('actualizar_perfil',id=cliente.domo_cliente.cli_id)}}">Editar
+                                        href="{{url_for('actualizar_perfil',id=cliente.cli_id)}}">Editar
                                         perfil</a>
-                                    <a class="btn btn-danger" onclick="confirmar()"
-                                        href="{{url_for('eliminar_perfil',id=cliente.domo_cliente.cli_id)}}">Eliminar
+                                    <a class="btn btn-danger" onclick="return confirmar()"
+                                        href="{{url_for('eliminar_perfil',id=cliente.cli_id)}}">Eliminar
                                         perfil</a>
                                 </div>
                             </div>
@@ -141,11 +141,12 @@ Perfil de Usuario
 <script>
     function confirmar(id) {
         let mensaje = "¿Esta seguro de eliminar su cuenta? Esta acción no se puede deshacer";
-        let text;
-        if (confirm(mensaje) == true) {
+        if (confirm(mensaje)) {
             text = "El restaurante será eliminado";
+            return true;
         } else {
             text = "Se cancela la acción";
+            return false;
         }
     }
 </script>

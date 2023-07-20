@@ -16,18 +16,18 @@ $(document).ready( function () {
              </tr>)'
 
 
-    $('body').on('click', '#nuevo', function(){
-        var names = getrtrnames($('#rtr_names').html().split(','))
+    // $('body').on('click', '#nuevo', function(){
+    //     var names = getrtrnames($('#rtr_names').html().split(','))
         
         
-        $('#cartas > tbody:last-child').append(new_row)
+    //     $('#cartas > tbody:last-child').append(new_row)
 
-        for(j=0;j-names[0].length;j++){
-            $('.nuevo-combo').append("<option>" + names[0][j][1] + "</option>")
-        }
-         $('.nuevo-combo').toggleClass('nuevo-combo')
-        $('#cartas > tbody:last-child').find('.edit-btn').click()
-    });
+    //     for(j=0;j-names[0].length;j++){
+    //         $('.nuevo-combo').append("<option>" + names[0][j][1] + "</option>")
+    //     }
+    //      $('.nuevo-combo').toggleClass('nuevo-combo')
+    //     $('#cartas > tbody:last-child').find('.edit-btn').click()
+    // });
 
     // $('body').on('click', '#nuevo', function(){
     //     var names = getrtrnames($('#rtr_names').html().split(','))
@@ -140,8 +140,9 @@ $(document).ready( function () {
 
     $("body").on("click", ".btn-delete", function(){  
         if(confirm('¿Estás seguro de eliminar esta carta?')){
-           
-        id = $(this).parents('tr').find('#id').html()
+        
+        //id = $(this).parents('tr').find('#id').html()
+        id = $(this).parents('tr').find('#car_id').html()
         console.log(id);
         delData(id)
         $(this).parents("tr").remove(); 
@@ -185,5 +186,28 @@ function replaceAll(str, find, replace) {
     var escapedFind=find.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
     return str.replace(new RegExp(escapedFind, 'g'), replace);
 
+}
+
+function delData(id){
+    if(id){
+        var url= window.location.pathname;
+        url += '/del'
+        $.ajax({
+            type: "POST",
+            url: url,
+            contentType: "application/json",
+            data: JSON.stringify(
+            {   "id": id
+            },
+            ),
+            dataType: "json",
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        })
+       }    
 }
 

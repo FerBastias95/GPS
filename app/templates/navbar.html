@@ -11,9 +11,10 @@
 
                 {% if session['tipo'] == 1 %} 
                 <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                <a href="{{url_for('buscar_restaurante')}}" class="nav-link active" aria-current="page" href="#">Buscar Restaurante</a>
                 <a href="{{url_for('cli_ver_reservas', cli_id = session['cli_id'])}}" class="nav-link active" aria-current="page" href="#">Mis Reservas</a>
-                    <li class="nav-item dropdown" >
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="10,-200">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa fa-gear" style="font-size:100%;"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
@@ -26,6 +27,10 @@
                 <a class="nav-link active" aria-current="page" href="{{url_for('dashboard')}}">Inicio</a>
                 <a class="nav-link" href="{{url_for('editor_horarios')}}">Gestionar Horarios</a>
                 <a class="nav-link" href="{{url_for('editor_cartas')}}">Gestionar Cartas</a>
+                <a class="nav-link" href="{{url_for('valorar_list', rtr_id = session['rtr_id'])}}">Valoraciones</a>
+                <a class="nav-link" href="{{url_for('res_ver_reservas', rtr_id = session['rtr_id'])}}">Gestionar Reservas</a>
+                <a class="nav-link" href="{{url_for('gestionar_mesas', rtr_id = session['rtr_id'])}}">Gestionar Mesas</a>
+                <a class="nav-link" href="{{url_for('ver_aforo')}}">Ver Aforo</a>
                 <a class="nav-link" href="{{url_for('logout')}}">Cerrar Sesión</a>
 
 
@@ -36,7 +41,8 @@
                 <a class="nav-link" href="{{url_for('logout')}}">Cerrar Sesión</a>
 
                 {% else %}
-                <a class="nav-link active" aria-current="page" href="{{url_for('login')}}">Iniciar Sesión</a>  
+                <a class="nav-link active" aria-current="page" href="{{url_for('login')}}">Iniciar Sesión</a>
+                <a href="{{url_for('buscar_restaurante')}}" class="nav-link active" aria-current="page" href="#">Buscar Restaurante</a>
 
                 {% endif %}
 
@@ -44,4 +50,3 @@
         </div>
      </div>
     </nav>
-
